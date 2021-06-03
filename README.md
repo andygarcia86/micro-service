@@ -2,7 +2,7 @@
 
 Micro service sample using RabbitMq, .Net Core and MassTransit
 
-##Requirements:
+## Requirements:
 
 1. RabbitMq
 2. Visual Studio Comunity Edition
