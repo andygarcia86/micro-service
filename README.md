@@ -6,6 +6,7 @@ Micro service sample using RabbitMq, .Net Core and MassTransit
 
 1. RabbitMq
 2. Visual Studio Comunity Edition
+3. Postman
 
 ### RabbitMq
 
