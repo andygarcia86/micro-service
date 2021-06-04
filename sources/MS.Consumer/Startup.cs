@@ -1,16 +1,11 @@
+using GreenPipes;
 using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using MS.Consumer.Consumer;
 
 namespace MS.Consumer
 {
@@ -26,6 +21,29 @@ namespace MS.Consumer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMassTransit(x =>
+            {
+                x.AddConsumer<OrderConsumer>();
+
+                x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
+                {
+                    // configure health checks for this bus instance
+                    cfg.UseHealthCheck(provider);
+
+                    cfg.Host("rabbitmq://localhost");
+
+                    cfg.ReceiveEndpoint("order-queue", ep =>
+                    {
+                        // ep.PrefetchCount = 16;
+                        // ep.UseMessageRetry(r => r.Interval(2, 100));
+
+                        // ep.ConfigureConsumer<OrderConsumer>(provider);
+                    });
+                }));
+            });
+
+            services.AddMassTransitHostedService();
+
             services.AddControllers();
         }
 
