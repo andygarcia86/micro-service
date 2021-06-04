@@ -35,6 +35,7 @@ namespace MS.Publisher
             });
 
             services.AddMassTransitHostedService();
+
             services.AddControllers();
         }
 

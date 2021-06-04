@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MS.Consumer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace MS.Publisher.Controllers
     {
         private static readonly string[] Summaries = new[]
         {
-            "Publisher"
+            "Consumer"
         };
 
         private readonly ILogger<InvoicingController> _logger;

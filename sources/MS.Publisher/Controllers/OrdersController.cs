@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
-using MS.Publisher.Model;
+using MS.Contracts;
 
 namespace MS.Publisher.Controllers
 {
