@@ -1,0 +1,33 @@
+﻿<Properties StartupConfiguration="{F83F64DB-9157-4BFD-BCDE-CE24AFF41A27}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MS.Publisher/Startup.cs">
+    <Files>
+      <File FileName="MS.Consumer/Model/Order.cs" Line="1" Column="1" />
+      <File FileName="MS.Consumer/Controllers/OrdersController.cs" Line="19" Column="1" />
+      <File FileName="MS.Consumer/Startup.cs" Line="28" Column="10" />
+      <File FileName="MS.Publisher/Controllers/InvoicingController.cs" Line="1" Column="1" />
+      <File FileName="MS.Publisher/Startup.cs" Line="33" Column="1" />
+      <File FileName="MS.Publisher/Program.cs" Line="10" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="MicroService" expanded="True">
+            <Node name="MS.Consumer" expanded="True" />
+            <Node name="MS.Publisher" expanded="True" selected="True">
+              <Node name="Dependencies" expanded="True" />
+              <Node name="Controllers" expanded="True" />
+              <Node name="Model" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.MS.Publisher PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
