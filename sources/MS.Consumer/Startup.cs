@@ -34,10 +34,10 @@ namespace MS.Consumer
 
                     cfg.ReceiveEndpoint("order-queue", ep =>
                     {
-                        // ep.PrefetchCount = 16;
-                        // ep.UseMessageRetry(r => r.Interval(2, 100));
+                        ep.PrefetchCount = 16;
+                        ep.UseMessageRetry(r => r.Interval(2, 100));
 
-                        // ep.ConfigureConsumer<OrderConsumer>(provider);
+                        ep.ConfigureConsumer<OrderConsumer>(provider);
                     });
                 }));
             });

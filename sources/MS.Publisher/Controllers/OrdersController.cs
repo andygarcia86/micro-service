@@ -3,27 +3,21 @@ using System.Threading.Tasks;
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using MS.Contracts;
-
 namespace MS.Publisher.Controllers
 {
     [ApiController]
     [Route("[controller]")]
     public class OrdersController : ControllerBase
     {
-        private readonly IBusControl _bus;
-
-        public OrdersController(IBusControl bus)
+        readonly IPublishEndpoint _publishEndpoint;
+        public OrdersController(IPublishEndpoint publishEndpoint)
         {
-            _bus = bus;
+            _publishEndpoint = publishEndpoint;
         }
-
         [HttpPost]
-        public async Task<ActionResult> CreateOrder(Order order)
+        public async Task<ActionResult> Post(Order order)
         {
-            Uri uri = new Uri("rabbitmq://localhost/order-queue");
-            var endPoint = await _bus.GetSendEndpoint(uri);
-            await endPoint.Send(order);
-
+            await _publishEndpoint.Publish<Order>(order);
             return Ok("Success");
         }
     }
