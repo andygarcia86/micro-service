@@ -4,22 +4,21 @@ using MS.Consumer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace MS.Publisher.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class InvoicingController : ControllerBase
+    public class ShippingController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
         {
             "Consumer"
         };
 
-        private readonly ILogger<InvoicingController> _logger;
+        private readonly ILogger<ShippingController> _logger;
 
-        public InvoicingController(ILogger<InvoicingController> logger)
+        public ShippingController(ILogger<ShippingController> logger)
         {
             _logger = logger;
         }
