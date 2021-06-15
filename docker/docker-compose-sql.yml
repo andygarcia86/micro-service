@@ -1,0 +1,25 @@
+version: '3.3'
+
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: ms-publisher-subscriber-sql
+    environment:
+      ACCEPT_EULA: 'Y'
+      SA_PASSWORD: 'Password1!'
+    networks: 
+        - backend
+    ports:
+        - "1433:1433"
+  rabbit:
+    image: rabbitmq:3.8.16-management
+    ports:
+        - "5672:5672"
+        - "15672:15672"
+    networks: 
+        - backend
+
+networks:
+  backend:
+    name: ms_publisher_subscriber
+    driver: bridge
