@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
@@ -14,10 +14,17 @@ namespace MS.Publisher.Controllers
         {
             _publishEndpoint = publishEndpoint;
         }
+
+        [HttpGet]
+        public async Task<ActionResult> Get()
+        {
+            return Ok("Orders");
+        }
+
         [HttpPost]
         public async Task<ActionResult> Post(Order order)
         {
-            await _publishEndpoint.Publish<Order>(order);
+            await _publishEndpoint.Publish(order);
             return Ok("Success");
         }
     }

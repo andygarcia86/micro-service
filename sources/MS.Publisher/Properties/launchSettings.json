@@ -12,7 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "invoicing",
+      "launchUrl": "orders",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -20,7 +20,7 @@
     "MS.Publisher": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "invoicing",
+      "launchUrl": "orders",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

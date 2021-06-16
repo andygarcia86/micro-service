@@ -21,25 +21,33 @@ namespace MS.Consumer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMassTransit(x =>
+            services.AddMassTransit(massTransit =>
             {
-                x.AddConsumer<OrderConsumer>();
+                massTransit.AddConsumer<OrderConsumer>();
 
-                x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
+                massTransit.UsingRabbitMq((context, configurator) =>
                 {
-                    // configure health checks for this bus instance
-                    cfg.UseHealthCheck(provider);
+                    var host = "localhost";
+                    var virtualHost = "/";
+                    var usr = "guest";
+                    var psw = "guest";
+                    var prefetchCount = 16;
+                    var messageRetryCount = 2;
+                    var messageRetryInterval = 500;
 
-                    cfg.Host("rabbitmq://localhost");
-
-                    cfg.ReceiveEndpoint("order-queue", ep =>
+                    configurator.Host(host, virtualHost, h =>
                     {
-                        ep.PrefetchCount = 16;
-                        ep.UseMessageRetry(r => r.Interval(2, 100));
-
-                        ep.ConfigureConsumer<OrderConsumer>(provider);
+                        h.Username(usr);
+                        h.Password(psw);
                     });
-                }));
+
+                    configurator.ReceiveEndpoint("order-queue", e =>
+                    {
+                        e.PrefetchCount = prefetchCount;
+                        e.UseMessageRetry(r => r.Interval(messageRetryCount, messageRetryInterval));
+                        e.ConfigureConsumer<OrderConsumer>(context);
+                    });
+                });
             });
 
             services.AddMassTransitHostedService();
